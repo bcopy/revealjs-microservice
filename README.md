@@ -5,7 +5,7 @@ This microservice provides a native, self-standing executable to serve Reveal.js
 ## How to use it
 
 1. Simply download the executable for your given platform (Linux, Windows, Mac OSX are supported).
-1. Create a ```www`` folder to contain your presentation and resources (images, reveal.js plugins etc...)
+1. Create a ```www``` folder to contain your presentation and resources (images, reveal.js plugins etc...)
 1. Create an ```index.html``` file in ```www``` to host your reveal.js presentation
   1. Note that all **reveal.js** resources are available under ```/revealjs```, for instance :
      * ```/revealjs/dist/reveal.js```
