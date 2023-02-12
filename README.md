@@ -1,3 +1,5 @@
+[![GraalVM Native Image builds](https://github.com/bcopy/revealjs-microservice/actions/workflows/main.yml/badge.svg)](https://github.com/bcopy/revealjs-microservice/actions/workflows/main.yml)
+
 # Reveal.js microservice
 
 This microservice provides a native, self-standing executable to serve Reveal.js presentations over HTTP.
