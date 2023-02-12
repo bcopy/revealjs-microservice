@@ -6,7 +6,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.0.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.cmcrobotics</groupId>
 	<artifactId>reveal-microservice</artifactId>
@@ -77,7 +76,13 @@
 				<include>revealjs/index.html</include>
 			  </includes>
 			</resource>
-		  </resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<includes>
+				  <include>**</include>
+				</includes>
+			  </resource>
+		</resources>
 	</build>
 
 </project>
