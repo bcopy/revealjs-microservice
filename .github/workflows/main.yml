@@ -31,6 +31,10 @@ jobs:
               target/reveal-microservice.exe
       
       - name: Deploy binary
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
         run: mvn -q -B deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
