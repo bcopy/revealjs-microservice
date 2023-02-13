@@ -29,3 +29,9 @@ jobs:
           path: |
               target/reveal-microservice
               target/reveal-microservice.exe
+      
+      - name: Deploy binary
+        run: mvn -q -B deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        

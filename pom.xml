@@ -28,6 +28,14 @@
 		</dependency>
 	</dependencies>
 
+	<distributionManagement>
+		<repository>
+		  <id>github</id>
+		  <name>GitHub Packages</name>
+		  <url>https://maven.pkg.github.com/bcopy/reveal-microservice</url>
+		</repository>
+	  </distributionManagement>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -55,13 +63,37 @@
 				<configuration>
 					<url>https://github.com/hakimel/reveal.js/archive/master.zip</url>
 					<unpack>true</unpack>
-					<outputDirectory>${project.build.directory}/revealjs</outputDirectory>
+					<outputDirectory>
+						${project.build.directory}/revealjs</outputDirectory>
 					<fileMappers>
 						<org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
 							<pattern>^\Qreveal.js-master/\E</pattern>
-							<replacement>./</replacement>
+							<replacement>
+								./</replacement>
 						</org.codehaus.plexus.components.io.filemappers.RegExpFileMapper>
 					</fileMappers>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagNameFormat>v{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.amashchenko.maven.plugin</groupId>
+				<artifactId>gitflow-maven-plugin</artifactId>
+				<version>1.11.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<generateBackupPoms>false</generateBackupPoms>
+					<processParent>true</processParent>
+					<processAllModules>true</processAllModules>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -74,14 +106,14 @@
 				<include>revealjs/plugin/**</include>
 				<include>revealjs/js/**</include>
 				<include>revealjs/index.html</include>
-			  </includes>
+				</includes>
 			</resource>
 			<resource>
 				<directory>${project.basedir}/src/main/resources</directory>
 				<includes>
 				  <include>**</include>
 				</includes>
-			  </resource>
+			</resource>
 		</resources>
 	</build>
 
