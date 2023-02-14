@@ -3,6 +3,9 @@ on: [push, pull_request]
 jobs:
   build:
     name: reveal-microservice on ${{ matrix.os }}
+    permissions:
+      contents: read
+      packages: write
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
