@@ -22,6 +22,8 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
   release_assets:
     name: Release assets
     needs: create_release
