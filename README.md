@@ -10,21 +10,39 @@ This microservice provides a native, self-standing executable to serve Reveal.js
 1. Create a ```www``` folder to contain your presentation and resources (images, reveal.js plugins etc...)
 1. Create an ```index.html``` file in ```www``` to host your reveal.js presentation
   1. Note that all **reveal.js** resources are available under ```/revealjs```, for instance :
-     * ```/revealjs/dist/reveal.js```
-     * ```/revealjs/plugin/notes/notes.js```
-     * ```/revealjs/dist/reset.css```
+     * ```/webjars/reveal.js/4.1.3/dist/reveal.js```
+     * ```/webjars/reveal.js/4.1.3/plugin/notes/notes.js```
+     * ```/webjars/reveal.js/4.1.3/dist/reset.css```
 1. Start the server with executing ```reveal-microservice``` and it will be available at http://localhost:8080/index.html
+
+🗒 NOTE : Native compilation does not currently support the Webjars locator library, forcing us to use versioned URLs to access Reveal.js resources (c.f. https://github.com/spring-projects/spring-framework/issues/27619 and https://github.com/webjars/webjars-locator-core/issues/96)
 
 ## Under the hood
 
 This microservice is implemented using Spring Boot 3 and its amazing native image compilation support.
 As such, you can configure the microservice using any of the supported Spring Boot application properties.
 
+All presentation templates are also [Thymeleaf templates](https://www.thymeleaf.org/), which supports the injection of request parameters and other dynamic properties into your presentations.
+
 One custom property available to you is the location of your static contents (by default ```./www/```), you can override this by adding a parameter to the microservice execution :
 
-```reveal-microservice --static.path=./my-custom-folder/```
+```bash
+reveal-microservice --spring.thymeleaf.prefix=./my-custom-folder/
+```
 
 Please note that the path **must** end with a forward slash.
+
+Note that your presentation must be called ```index.html``` - To allow other HTML files to be served, you need to list them in the view names property like so (for instance, two files called ``my-presentation.html`` and ``my-other-presentation.html`` located under ```./www/```) :
+
+```bash
+reveal-microservice --spring.thymeleaf.view-names=my-presentation.html,my-other-presentation.html
+```
+
+Static resources (*e.g.* images) are served from the folder ```./resources/```, you can also adjust this location like so :
+
+```bash
+reveal-microservice --spring.web.resources.static-locations=./my-other-resource-location/
+```
 
 ## How to develop
 
