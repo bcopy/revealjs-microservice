@@ -30,9 +30,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
-      # checkout of cource
       - name: Checkout code
         uses: actions/checkout@v3
       - uses: graalvm/setup-graalvm@v1.0.9
@@ -45,18 +44,26 @@ jobs:
       - name: Build the microservice
         run: |
           ./mvnw -q -B native:compile -Pnative
-      # ... whatever build and packaging steps you need here
-      # and finally do an upload!
-      - name: Upload release assets
+      - name: Upload UNIX release assets
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_name: reveal-microservice-${{ github.ref }}-${{ matrix.os }}
-          # The path to the file you want to upload.
+          asset_name: reveal-microservice-${{ matrix.os }}
           asset_path: |
               target/reveal-microservice
+          asset_content_type: application/octet-stream
+      - name: Upload Windows release asset and platform independent JAR
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_name: reveal-microservice-${{ matrix.os }}
+          asset_path: |
               target/reveal-microservice.exe
           asset_content_type: application/octet-stream
       
