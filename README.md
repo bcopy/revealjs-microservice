@@ -25,19 +25,21 @@ As such, you can configure the microservice using any of the supported [Spring B
 
 All presentation templates are also [Thymeleaf templates](https://www.thymeleaf.org/), which supports the injection of request parameters and other dynamic properties into your presentations.
 
-One custom property available to you is the location of your reveal.js presentation (by default ```./www/```), you can override this by adding a parameter to the microservice execution :
+One custom property available to you is the location of your reveal.js presentation (by default ```./www/```), you can override this by adding a parameter to the microservice execution (for instance if your files are stored in ```./my-custom-folder```) :
 
 ```bash
-reveal-microservice --spring.thymeleaf.prefix=./my-custom-folder/
+reveal-microservice --spring.thymeleaf.prefix=file:./my-custom-folder/
 ```
 
 Please note that the path **must** end with a forward slash.
 
+<!--
 Note that your presentation must be called ```index.html``` - To allow other HTML files to be served, you need to list them in the view names property like so (for instance, two files called ``my-presentation.html`` and ``my-other-presentation.html`` located under ```./www/```) :
 
 ```bash
 reveal-microservice --spring.thymeleaf.view-names=my-presentation.html,my-other-presentation.html
 ```
+-->
 
 Static resources (*e.g.* images) are served from the folder ```./resources/```, you can also adjust this location like so :
 
