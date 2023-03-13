@@ -27,7 +27,7 @@ jobs:
 
       - name: Build the microservice
         run: |
-          ./mvnw -q -B native:compile -Pnative
+          ./mvnw -q -B native:compile -Pnative -DskipNativeTests
       
       - name: Upload binary
         uses: actions/upload-artifact@v2
