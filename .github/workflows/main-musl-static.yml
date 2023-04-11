@@ -1,4 +1,4 @@
-name: GraalVM Native Image builds
+name: GraalVM Native Static MUSL Image builds
 on: 
   push:
     branches:
@@ -6,14 +6,11 @@ on:
       - develop
 jobs:
   build:
-    name: reveal-microservice on ${{ matrix.os }}
+    name: Static reveal-microservice for MUSL lib
     permissions:
       contents: read
       packages: write
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -24,17 +21,16 @@ jobs:
           components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           native-image-job-reports: 'true'
-
-      - name: Build the microservice
+          native-image-musl: 'true'
+      - name: Build the microservice with MUSL C static flag
         run: |
-          ./mvnw -q -B native:compile -Pnative -DskipTests -DskipNativeTests
+          ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DskipTests -DbuildArgs="--static --libc=musl"
       
       - name: Upload binary
         uses: actions/upload-artifact@v2
         with:
-          name: reveal-microservice-${{ matrix.os }}
+          name: reveal-microservice-linux-static
           path: |
               target/reveal-microservice
-              target/reveal-microservice.exe
 
         
