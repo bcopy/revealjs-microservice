@@ -1,0 +1,37 @@
+name: GraalVM Native Static MUSL Image builds
+on: 
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  build:
+    name: reveal-microservice for MUSL C
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: graalvm/setup-graalvm@v1.0.9
+        with:
+          version: '22.3.1'
+          java-version: '17'
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
+
+      - name: Build the microservice with MUSL C static flag
+        run:
+          - apt install -y musl-dev
+          - ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DbuildArgs="--static --libc=musl"
+      
+      - name: Upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: reveal-microservice-linux-musl
+          path: |
+              target/reveal-microservice
+
+        
