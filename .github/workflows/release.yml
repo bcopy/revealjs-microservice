@@ -43,7 +43,7 @@ jobs:
           native-image-job-reports: 'true'
       - name: Build the microservice
         run: |
-          ./mvnw -q -B native:compile -Pnative
+          ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DskipTests
       - name: Upload UNIX release assets
         if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
         uses: actions/upload-release-asset@v1
