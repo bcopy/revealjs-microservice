@@ -6,7 +6,7 @@ on:
       - develop
 jobs:
   build:
-    name: reveal-microservice for MUSL C
+    name: Static reveal-microservice for MUSL lib
     permissions:
       contents: read
       packages: write
@@ -29,7 +29,7 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v2
         with:
-          name: reveal-microservice-linux-musl
+          name: reveal-microservice-linux-static
           path: |
               target/reveal-microservice
 

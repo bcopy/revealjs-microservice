@@ -66,4 +66,32 @@ jobs:
           asset_path: |
               target/reveal-microservice.exe
           asset_content_type: application/octet-stream
+  release_static_assets:
+    name: Release statically compiled assets
+    needs: create_release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - uses: graalvm/setup-graalvm@v1.0.9
+        with:
+          version: '22.3.1'
+          java-version: '17'
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          native-image-job-reports: 'true'
+          native-image-musl: 'true'
+      - name: Build the microservice
+        run: |
+          ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DskipTests -DbuildArgs="--static --libc=musl"
+      - name: Upload static release assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_name: reveal-microservice-linux-static
+          asset_path: |
+              target/reveal-microservice
+          asset_content_type: application/octet-stream
       
