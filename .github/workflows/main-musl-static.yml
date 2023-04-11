@@ -23,9 +23,9 @@ jobs:
           native-image-job-reports: 'true'
 
       - name: Build the microservice with MUSL C static flag
-        run:
-          - apt install -y musl-dev
-          - ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DbuildArgs="--static --libc=musl"
+        run: |
+          apt install -y musl-dev
+          ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DbuildArgs="--static --libc=musl"
       
       - name: Upload binary
         uses: actions/upload-artifact@v2
