@@ -52,8 +52,12 @@
 			<artifactId>ini4j</artifactId>
 			<version>0.5.4</version>
 		</dependency>
-		 
-		 
+
+		<dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml</artifactId>
+            <version>RELEASE</version>
+        </dependency>
 		
 		<dependency>
 		    <groupId>com.google.jimfs</groupId>
@@ -89,6 +93,9 @@
 			<plugin>
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
+				<configuration>
+					<jvmArgs><arg>-Xmx6g</arg><arg>-Xms2g</arg></jvmArgs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

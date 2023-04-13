@@ -13,7 +13,7 @@ import com.github.cmcrobotics.reveal.process.ProcessorService;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication(proxyBeanMethods = false)
-@ComponentScan({"com.github.cmcrobotics.reveal.process"})
+@ComponentScan({"com.github.cmcrobotics.reveal.process","com.github.cmcrobotics.reveal"})
 public class RevealJsMicroserviceApplication {
 	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(RevealJsMicroserviceApplication.class);
 	
