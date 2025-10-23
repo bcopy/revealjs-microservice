@@ -10,13 +10,11 @@ This microservice provides a native, self-standing executable to serve Reveal.js
 1. Create a ```www``` folder to contain your presentation 
 1. Create a ```resources``` folder to contain your binary and static resources (images, reveal.js plugins etc...)
 1. Create an ```index.html``` file in ```www``` to host your reveal.js presentation (Bonus : you can use [Thymeleaf templating](https://www.thymeleaf.org/))
-  1. Note that all **reveal.js** resources are available under ```/webjars/reveal.js/4.1.3/```, for instance :
-     * ```/webjars/reveal.js/4.1.3/dist/reveal.js```
-     * ```/webjars/reveal.js/4.1.3/plugin/notes/notes.js```
-     * ```/webjars/reveal.js/4.1.3/dist/reset.css```
+  1. Note that all **reveal.js** resources are available under ```/webjars/reveal.js/```, for instance :
+     * ```/webjars/reveal.js/dist/reveal.js```
+     * ```/webjars/reveal.js/plugin/notes/notes.js```
+     * ```/webjars/reveal.js/dist/reset.css```
 1. Start the server with executing ```reveal-microservice``` and it will be available at http://localhost:8080/index.html
-
-🗒 NOTE : Native compilation does not currently support the Webjars locator library, forcing us to use versioned URLs to access Reveal.js resources (c.f. [Spring Framework issue 27619](https://github.com/spring-projects/spring-framework/issues/27619) and [Webjars locator issue 96](https://github.com/webjars/webjars-locator-core/issues/96) )
 
 ## Under the hood
 
