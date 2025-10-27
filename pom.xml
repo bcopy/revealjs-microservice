@@ -84,7 +84,7 @@
 		<repository>
 		  <id>github</id>
 		  <name>GitHub Packages</name>
-		  <url>https://maven.pkg.github.com/bcopy/reveal-microservice</url>
+		  <url>https://maven.pkg.github.com/bcopy/revealjs-microservice</url>
 		</repository>
 	  </distributionManagement>
 
@@ -97,6 +97,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- TODO : Reenable file system tests once the resources are committed in Git -->
+					<excludes>
+						<exclude>**/FileSystemProcessorTest.java</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 
 			<plugin>
