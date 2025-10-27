@@ -1,4 +1,5 @@
 [![GraalVM Native Image builds](https://github.com/bcopy/revealjs-microservice/actions/workflows/main.yml/badge.svg)](https://github.com/bcopy/revealjs-microservice/actions/workflows/main.yml)
+[![reveal.js](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbcopy%2Frevealjs-microservice%2Fmain%2Fpom.xml&query=%2F%2Fproject%2Fdependencies%2Fdependency%5BartifactId%3D%27reveal.js%27%5D%2Fversion&label=reveal.js)](https://search.maven.org/artifact/org.webjars.npm/reveal.js)
 
 # Reveal.js microservice
 
@@ -74,4 +75,3 @@ To release a new version, invoke the gitflow plugin like so :
 ```./mvnw gitflow:release```
 
 It will prompt for the new version number, and increment all related Maven information, before pushing all updates.
-
