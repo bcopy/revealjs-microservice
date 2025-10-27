@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.github.cmcrobotics</groupId>
 	<artifactId>reveal-microservice</artifactId>
-	<version>0.0.8-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>RevealJS :: Microservice</name>
 	<description>A presentation Microservice for Reveal JS presentations</description>
 	<properties>
