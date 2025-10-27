@@ -1,5 +1,5 @@
 [![GraalVM Native Image builds](https://github.com/bcopy/revealjs-microservice/actions/workflows/main.yml/badge.svg)](https://github.com/bcopy/revealjs-microservice/actions/workflows/main.yml)
-[![reveal.js](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbcopy%2Frevealjs-microservice%2Fmain%2Fpom.xml&query=%2F%2Fproject%2Fdependencies%2Fdependency%5BartifactId%3D%27reveal.js%27%5D%2Fversion&label=reveal.js)](https://search.maven.org/artifact/org.webjars.npm/reveal.js)
+[![reveal.js](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbcopy%2Frevealjs-microservice%2Fmain%2Fpom.xml&query=%2F%2F%2A%5Blocal-name%28%29%3D%27project%27%5D%2F%2A%5Blocal-name%28%29%3D%27dependencies%27%5D%2F%2A%5Blocal-name%28%29%3D%27dependency%27%5D%5B%2A%5Blocal-name%28%29%3D%27artifactId%27%5D%3D%27reveal.js%27%5D%2F%2A%5Blocal-name%28%29%3D%27version%27%5D&label=reveal.js)](https://search.maven.org/artifact/org.webjars.npm/reveal.js)
 
 # Reveal.js microservice
 
