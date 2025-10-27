@@ -14,11 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: graalvm/setup-graalvm@v1.0.9
+      - uses: graalvm/setup-graalvm@v1.4.1
         with:
-          version: '22.3.1'
-          java-version: '17'
-          components: 'native-image'
+          java-version: '21'
+          distribution: 'graalvm-community'
+          # components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           native-image-job-reports: 'true'
           native-image-musl: 'true'
@@ -27,7 +27,7 @@ jobs:
           ./mvnw -q -B native:compile -Pnative -DskipNativeTests -DskipTests -DbuildArgs="--static --libc=musl"
       
       - name: Upload binary
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: reveal-microservice-linux-static
           path: |
