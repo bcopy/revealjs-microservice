@@ -49,8 +49,7 @@ reveal-microservice --spring.web.resources.static-locations=./my-other-resource-
 
 ### Pre-requisites
 
-* Java 17 GraalVM 22.3+
-* GraalVM Native image plugin
+* Java 17 GraalVM 23.0+ (normally ships with the ``native`` component out of the box)
 
 ## Building the Spring Boot application
 
@@ -62,4 +61,17 @@ You can then run the service with :
 
 ```./mvnw spring-boot:run```
 
-To compile the native image, please refer to [HELP.md](./HELP.md).
+You can compile a Native image with :
+
+```./mvnw -q -B native:compile -Pnative```
+
+For more details on how to compile the native image, please refer to [HELP.md](./HELP.md).
+
+## Releasing a new version
+
+To release a new version, invoke the gitflow plugin like so :
+
+```./mvnw gitflow:release```
+
+It will prompt for the new version number, and increment all related Maven information, before pushing all updates.
+
